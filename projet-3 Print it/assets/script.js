@@ -20,5 +20,10 @@ const slides = [
 let flecheDroite = document.querySelector("#banner .arrow_right")
 let flecheGauche = document.querySelector("#banner .arrow_left")
 
-console.log(flecheDroite)
-console.log(flecheGauche)
+flecheDroite.addEventListener("click", () => {
+	console.log(flecheDroite)
+})
+
+flecheGauche.addEventListener("click", () => {
+	console.log(flecheGauche)
+})
