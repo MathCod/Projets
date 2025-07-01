@@ -20,6 +20,7 @@ const slides = [
 // quelle image est affichée actuellement
 let currentIndex = 0;
 
+// toutes les variables générales
 const images = document.querySelectorAll('.banner-img');
 const text = document.querySelector('#banner p');
 const dots = document.querySelectorAll('.dot');
@@ -43,7 +44,7 @@ function showSlide(index) {
 	});
 }
 
-// Navigation avec les flèches
+// Navigation avec les flèches avec condition
 flecheDroite.addEventListener("click", () => {
 	if (currentIndex === slides.length - 1) {
 		currentIndex = 0;
