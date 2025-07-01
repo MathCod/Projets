@@ -123,8 +123,6 @@ header {
 	object-fit: cover;
 	object-position: center;
 	opacity: 0;		/* cache les images du carrousel */
-	transition: opacity 0.5s ease-in-out; /* transition en fondue */
-	/* */
 }
 .banner-img.active { /* affiche l'image active */
 	opacity: 1;

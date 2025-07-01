@@ -45,12 +45,20 @@ function showSlide(index) {
 
 // Navigation avec les flèches
 flecheDroite.addEventListener("click", () => {
-	currentIndex = (currentIndex + 1) % slides.length; /* % slides.length permet de boucler */
+	if (currentIndex === slides.length - 1) {
+		currentIndex = 0;
+	} else {
+		currentIndex++;
+	}
 	showSlide(currentIndex);
 });
 
 flecheGauche.addEventListener("click", () => {
-	currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+	if (currentIndex === 0) {
+		currentIndex = slides.length - 1;
+	} else {
+		currentIndex--;
+	}
 	showSlide(currentIndex);
 });
 
