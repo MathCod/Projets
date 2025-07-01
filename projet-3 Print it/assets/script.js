@@ -17,13 +17,50 @@ const slides = [
 	}
 ]
 
-let flecheDroite = document.querySelector("#banner .arrow_right")
-let flecheGauche = document.querySelector("#banner .arrow_left")
+// quelle image est affichée actuellement
+let currentIndex = 0;
 
+const images = document.querySelectorAll('.banner-img');
+const text = document.querySelector('#banner p');
+const dots = document.querySelectorAll('.dot');
+const flecheDroite = document.querySelector("#banner .arrow_right")
+const flecheGauche = document.querySelector("#banner .arrow_left")
+
+// Affiche la slide en fonction de l'index
+function showSlide(index) {
+	// Cache toutes les images
+	images.forEach((img, i) => {
+		img.classList.remove('active');
+		if (i === index) img.classList.add('active');
+	});
+
+	// Change le texte
+	text.innerHTML = slides[index].tagLine;
+
+	// Met à jour les bullets
+	dots.forEach((dot, i) => {
+		dot.classList.toggle('dot_selected', i === index);
+	});
+}
+
+// Navigation avec les flèches
 flecheDroite.addEventListener("click", () => {
-	console.log(flecheDroite)
-})
+	currentIndex = (currentIndex + 1) % slides.length; /* % slides.length permet de boucler */
+	showSlide(currentIndex);
+});
 
 flecheGauche.addEventListener("click", () => {
-	console.log(flecheGauche)
-})
+	currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+	showSlide(currentIndex);
+});
+
+// Dots cliquables
+dots.forEach((dot, i) => {
+	dot.addEventListener('click', () => {
+		currentIndex = i;
+		showSlide(currentIndex);
+	});
+});
+
+// Initialisation
+showSlide(currentIndex);
