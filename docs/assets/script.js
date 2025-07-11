@@ -17,23 +17,35 @@ const slides = [
 	}
 ]
 
+// Générer les "dots" dynamiquement
+const dotsContainer = document.querySelector('.dots');
+
+slides.forEach((_, index) => {
+	const dot = document.createElement('div');
+	dot.classList.add('dot');
+	if (index === 0) dot.classList.add('dot_selected');
+
+	dot.addEventListener('click', () => {
+		currentIndex = index;
+		showSlide(currentIndex);
+	});
+
+	dotsContainer.appendChild(dot);
+});
+
 // quelle image est affichée actuellement
 let currentIndex = 0;
 
 // toutes les variables générales
 const images = document.querySelectorAll('.banner-img');
 const text = document.querySelector('#banner p');
-const dots = document.querySelectorAll('.dot');
+const dots = dotsContainer.querySelectorAll('.dot');
 const flecheDroite = document.querySelector("#banner .arrow_right")
 const flecheGauche = document.querySelector("#banner .arrow_left")
 
 // Affiche la slide en fonction de l'index
 function showSlide(index) {
-	// Cache toutes les images
-	images.forEach((img, i) => {
-		img.classList.remove('active');
-		if (i === index) img.classList.add('active');
-	});
+	images[0].src = "./assets/images/slideshow/" + slides[index].image;
 
 	// Change le texte
 	text.innerHTML = slides[index].tagLine;
